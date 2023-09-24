@@ -1,55 +1,48 @@
-body{
-    background-color: rgb(219, 221, 210)
-}
 *{
     margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(30, 00, 20);
+    user-select: none;
 }
 #header{
-    text-align: center;
-    height: 8em;
-    background-color:rgb(224, 117, 40) ;
-    border-radius: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4em;
+    height: 6em;
+    width: 70%;
+    margin: auto;
+    border-bottom: 3px solid rgb(28, 00, 34);
 }
-
 h1{
-    padding-top: 0.9em;
+    font-weight: 860;   
 }
 
-#board_container{
-    padding-top: 2em;
-    padding-bottom: 10em;
-    background-color: rgb(219, 221, 210);
-}
-
-#board_frame{
-    border: 4px solid brown;
-    background-color: burlywood;
-    width: 35em;
-    margin: auto;
-    margin-top: 3em;
-    padding-left: 1em;
-    border-radius: 1.5em;
-}
-#board{
+#squares{
+    padding-top: 7em;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 33em;
-    margin: auto;
-    padding-top: 1em;
-    padding-bottom: 2em;
-}
-.square{
-    width: 10em;
-    height: 10em;
-    border: 1px solid brown;
-    margin-top: 1em;
-    background-color: rgb(243, 240, 240);
-}
-.blueSquare{
-    background-color: blue;
-}
-.redSquare{
-    background-color: red;
+    grid-template-columns: 0fr 0fr 0fr;
+    justify-content: center;
 }
 
-  
+.square{
+    width: 10rem;  /* unidades rem utilizando em al dar medida al texto se me va todo la medida */
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    color: rgb(28, 00, 34);
+    font-weight: bold;
+}
+
+.top{
+    border-bottom: 0.4rem solid rgb(28, 00, 34);
+}
+.middel{
+    border-left: 0.4rem solid rgb(28, 00, 34);
+    border-right: 0.4rem solid rgb(28, 00, 34);
+}
+.bottom{
+    border-top: 0.4rem solid rgb(28, 00, 34);
+}
