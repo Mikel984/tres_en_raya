@@ -5,10 +5,6 @@
     user-select: none;
     background-color: rgb(211, 215, 218);
 }
-body{
-	height: 100%;
-}
-
 #header{
     display: flex;
     justify-content: center;
@@ -22,14 +18,40 @@ body{
 h1{
     font-weight: 860;   
 }
+#board{
+    display: flex;
+    justify-content: center;
+}
+#shiftScreen{
+    margin-top: 4em;
 
+    width: 15% ;
+    height: 13rem;
+    text-align: center;
+    
+}
+h2{
+   
+    color: rgb(36, 25, 65);
+}
+#turn{
+    width: 99% ;
+    height: 7rem;
+    font-size: 7rem;
+    color: rgb(36, 25, 65);
+}
+#text{
+    color: rgb(36, 25, 65);
+    margin-right: 0.1rem;
+}
 #squares{
-    padding-top: 7em;
+    width: 45%;
+    margin-top: 7em;
+    margin-right: 15%;
     display: grid;
     grid-template-columns: 0fr 0fr 0fr;
     justify-content: center;
 }
-
 .square{
     width: 10rem;  
     height: 10rem;
@@ -40,7 +62,6 @@ h1{
     color: rgb(28, 00, 34);
     font-weight: bold;
 }
-
 .top{
     border-bottom: 0.4rem solid rgb(36, 25, 65);
 }
@@ -51,11 +72,9 @@ h1{
 .bottom{
     border-top: 0.4rem solid rgb(36, 25, 65);
 }
-
 .winner{
     background-color: rgb(150, 150, 8);
 }
-
 dialog{
     margin: auto;
     text-align: center;
@@ -73,6 +92,5 @@ h3{
 img{
     height: 6rem;
     width: 6rem;
-    
 }
   

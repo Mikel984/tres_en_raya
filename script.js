@@ -1,6 +1,6 @@
 const x = "X"
 const o = "◯"
-let shift = "Player1"
+let shift;
 const squares = document.querySelectorAll(".square")
 const squaresArray = [...squares]
 let winner = false;
@@ -9,20 +9,28 @@ let possitions  = [];
 const endingMessage = document.querySelector("dialog")
 const messageText = endingMessage.querySelector("h3");
 const resetButton = endingMessage.querySelector("button");
+const shiftScreen = document.querySelector("#turn");
+const screenText = document.querySelector("#text")
 
 
+shiftSetting()
+console.log(shift)
+screenPlay()
 squares.forEach((element)=>{
     element.addEventListener("click",()=>{
         if(shift=="stop") return; 
         if(element.textContent !== "") return;
         
-        (shift == "Player1")? element.innerHTML = x: element.innerHTML = o;
+        (shift == "Cruces")? element.innerHTML = x: element.innerHTML = o;
  
         winnerCheck();
         isGameTie()
+        screenPlay()
         })
     })
     resetGame()
+    
+// FUNCTIONS
 
 function winnerCheck(){
     const gameArray = squaresArray.map(element=>element.textContent) 
@@ -56,7 +64,7 @@ function isWinner(combination){
     combination.forEach(pos=>{
         squares[pos].classList.add("winner");
     });
-    showMessage(`FIN DE PARTIDA\n  ${shift} Wins!!`);
+    showMessage(`FIN DE PARTIDA\n  GANAN ${shift}!!`);
     shift = "stop";
 }
 
@@ -67,7 +75,7 @@ function isGameTie(){
         return;
     }
     if(winnerSquares=="TIE") showMessage(`TERMINO EL JUEGO\n HA SIDO EMPATE`)
-        shift = (shift =="Player1")? shift = "Player2": shift = "Player1";
+        shift = (shift =="Cruces")? shift = "Circulos": shift = "Cruces";
 }
 
 function showMessage(text){
@@ -81,8 +89,22 @@ function resetGame(){
             element.textContent = "";
             element.classList.remove("winner");
             endingMessage.close();
-            shift= "Player1";
+            shiftSetting();
+            screenPlay()
+            
         });
+        console.log(shift)
     });
 }
-    
+
+function shiftSetting(){
+    shift =  ((Math.floor((Math.random()*2)+1)) == 1)? "Cruces": "Circulos";
+}
+
+function screenPlay(){
+    if(shift == "Cruces"){
+        shiftScreen.innerHTML = `X`;
+    }else{
+        shiftScreen.innerHTML = `O`;
+    }
+}
