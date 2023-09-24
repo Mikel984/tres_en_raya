@@ -1,9 +1,14 @@
 *{
     margin: 0px;
     font-family: Arial, Helvetica, sans-serif;
-    color: rgb(30, 00, 20);
+    color: rgb(36, 25, 65);
     user-select: none;
+    background-color: rgb(211, 215, 218);
 }
+body{
+	height: 100%;
+}
+
 #header{
     display: flex;
     justify-content: center;
@@ -12,7 +17,7 @@
     height: 6em;
     width: 70%;
     margin: auto;
-    border-bottom: 3px solid rgb(28, 00, 34);
+    border-bottom: 3px solid rgb(36, 25, 65);
 }
 h1{
     font-weight: 860;   
@@ -26,7 +31,7 @@ h1{
 }
 
 .square{
-    width: 10rem;  /* unidades rem utilizando em al dar medida al texto se me va todo la medida */
+    width: 10rem;  
     height: 10rem;
     display: flex;
     justify-content: center;
@@ -37,12 +42,37 @@ h1{
 }
 
 .top{
-    border-bottom: 0.4rem solid rgb(28, 00, 34);
+    border-bottom: 0.4rem solid rgb(36, 25, 65);
 }
 .middel{
-    border-left: 0.4rem solid rgb(28, 00, 34);
-    border-right: 0.4rem solid rgb(28, 00, 34);
+    border-left: 0.4rem solid rgb(36, 25, 65);
+    border-right: 0.4rem solid rgb(36, 25, 65);
 }
 .bottom{
-    border-top: 0.4rem solid rgb(28, 00, 34);
+    border-top: 0.4rem solid rgb(36, 25, 65);
 }
+
+.winner{
+    background-color: rgb(150, 150, 8);
+}
+
+dialog{
+    margin: auto;
+    text-align: center;
+    border-radius: 20%;
+    height: 13rem ;
+    width: 15rem;
+    background-color: white;
+}
+h3{
+    background-color: white;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: rgb(66, 59, 59);
+}
+img{
+    height: 6rem;
+    width: 6rem;
+    
+}
+  

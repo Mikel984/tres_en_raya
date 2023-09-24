@@ -1,54 +1,89 @@
 const x = "X"
 const o = "◯"
-let shift = "player1"
+let shift = "Player1"
 const squares = document.querySelectorAll(".square")
 const squaresArray = [...squares]
 let winner = false;
+let winnerSquares;
+let possitions  = [];
+const endingMessage = document.querySelector("dialog")
+const messageText = endingMessage.querySelector("h3");
+const resetButton = endingMessage.querySelector("button");
 
 
-// 1 asignamos evento a cada casilla y retornamos indice de cada una de elleas tambien
 squares.forEach((element,index)=>{
     element.addEventListener("click",()=>{
-        // 2 rellenamos casillas con cada click
-        // cruz o raya segun el turno
-        (shift == "player1")? element.innerHTML = x: element.innerHTML = o;
-        //cambiamos turno cada vez que hacemos click
-        (shift == "player1")? shift = "player2": shift = "player1";
-        // 3 revisar ganador
-        //creamos array a partir de los elemento de nuestra array7collection inicial
-        // comprobamos si hay ganador en filas
-        const gameArray = squaresArray.map(element=>element.textContent) 
-        let combination = [];
-        for(let i= 0; i<=9;i+=3){
-            if(gameArray[i] == gameArray[i+1] && gameArray[i] == gameArray[i+2] && gameArray[i]){
-                winner==true
-                combination = [i,i+1,i+2]
-                console.log (`Enhorabuena ganaste con la combinacion ${combination}`)
-            }
+        if(shift=="stop") return; // detiene el programa cuando la funcion winner cambia el estado de la variable shift a stop
+        if(element.textContent !== "") return; // si al hacer click la casilla esta llena el programa no hace nada eso para qeu no se pueda cambiar la ficha una vez seleccionada la casilla  
+        
+        (shift == "Player1")? element.innerHTML = x: element.innerHTML = o;
+        
+        // 3 revisar ganador 
+        winnerCheck();
+        //4 y si hay empate
+        winnerSquares = winnerCheck();
+        if(typeof winnerSquares=="object"){
+            isWinner(winnerSquares)
+            return
         }
-        for(let i= 0; i<=3;i++){
-            if(gameArray[i] == gameArray[i+3] && gameArray[i] == gameArray[i+6] && gameArray[i]){
-                combination = [i,i+3,i+6]
-                console.log (`Enhorabuena ganaste con la combinacion ${combination}`)
-            }
-        }
-        if(gameArray[0] == gameArray[4] && gameArray[0] == gameArray[8] && gameArray[0]){
-            combination = [0,4,8]
-            console.log (`Enhorabuena ganaste con la combinacion ${combination}`)
-        }
-        if(gameArray[2] == gameArray[4] && gameArray[2] == gameArray[6] && gameArray[2]){
-            combination = [2,4,6]
-            console.log (`Enhorabuena ganaste con la combinacion ${combination}`)
-        }
+        if(winnerSquares=="TIE") showMessage(`TERMINO EL JUEGO\n HA SIDO EMPATE`)
+        shift = (shift =="Player1")? shift = "Player2": shift = "Player1";
         })
-    })  //* problema !!!!CONTINUA EJECUTANDO LA COMPROBACION UNA VEZ TENEMOS UN GANADOR.... */
+        //5 detener juego y mostrar mensaje cuando termina
+    })
 
+    resetButton.addEventListener("click",()=>{
+        squaresArray.forEach(element =>{
+            element.textContent = "";
+            element.classList.remove("winner")
+            endingMessage.close();
+            shift= "Player1";
+        });
+    });
+
+//revisar ganador
+function winnerCheck(){
+    const gameArray = squaresArray.map(element=>element.textContent) 
     
-    /*squaresArray.forEach((element,i)=>{   !!!!!!!!!!!!!!!!! conseguir sacar la matriz cada vez con un forEach en lugar de map!!!
-        const content = element.textContent;
-        squaresArray.splice(index,1,content);
-        console.log(squaresArray) 
-    })*/
+    for(let i= 0; i<=9;i+=3){
+        if(gameArray[i] == gameArray[i+1] && gameArray[i] == gameArray[i+2] && gameArray[i]){
+            possitions = [i,i+1,i+2];
+            return possitions;
+        } 
+    }
+    for(let i= 0; i<=3;i++){
+        if(gameArray[i] == gameArray[i+3] && gameArray[i] == gameArray[i+6] && gameArray[i]){
+            possitions  = [i,i+3,i+6];
+            return possitions; 
+        }
+    }
+    if(gameArray[0] == gameArray[4] && gameArray[0] == gameArray[8] && gameArray[0]){
+        possitions  = [0,4,8];
+        return possitions; 
+    } 
+    if(gameArray[2] == gameArray[4] && gameArray[2] == gameArray[6] && gameArray[2]){
+        possitions  = [2,4,6];
+        return possitions;
+    }
+    //tambien revisamos si hay empate
+    if(gameArray.includes(""))return false;
+    return ("TIE");
+}
+    
+    function isWinner(combination){
+        console.log("Gano la posicion: ", combination);
+        combination.forEach(pos=>{ // resaltamos celdas ganadoras detenemos el programa
+            squares[pos].classList.add("winner")
+        })
+        showMessage(`FIN DE PARTIDA\n  ${shift} Wins!!`)
+        shift = "stop" // para que la ejecucion del programa pause
+    }
+
+    function showMessage(text){
+        messageText.innerText =  text;
+        endingMessage.showModal();
+    }
+    
 
     
     
