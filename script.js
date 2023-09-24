@@ -13,14 +13,10 @@ const resetButton = endingMessage.querySelector("button");
 
 squares.forEach((element,index)=>{
     element.addEventListener("click",()=>{
-        if(shift=="stop") return; // detiene el programa cuando la funcion winner cambia el estado de la variable shift a stop
-        if(element.textContent !== "") return; // si al hacer click la casilla esta llena el programa no hace nada eso para qeu no se pueda cambiar la ficha una vez seleccionada la casilla  
-        
+        if(shift=="stop") return; 
+        if(element.textContent !== "") return; 
         (shift == "Player1")? element.innerHTML = x: element.innerHTML = o;
-        
-        // 3 revisar ganador 
         winnerCheck();
-        //4 y si hay empate
         winnerSquares = winnerCheck();
         if(typeof winnerSquares=="object"){
             isWinner(winnerSquares)
@@ -29,7 +25,7 @@ squares.forEach((element,index)=>{
         if(winnerSquares=="TIE") showMessage(`TERMINO EL JUEGO\n HA SIDO EMPATE`)
         shift = (shift =="Player1")? shift = "Player2": shift = "Player1";
         })
-        //5 detener juego y mostrar mensaje cuando termina
+        
     })
 
     resetButton.addEventListener("click",()=>{
@@ -41,7 +37,7 @@ squares.forEach((element,index)=>{
         });
     });
 
-//revisar ganador
+
 function winnerCheck(){
     const gameArray = squaresArray.map(element=>element.textContent) 
     
@@ -65,18 +61,18 @@ function winnerCheck(){
         possitions  = [2,4,6];
         return possitions;
     }
-    //tambien revisamos si hay empate
+  
     if(gameArray.includes(""))return false;
     return ("TIE");
 }
     
     function isWinner(combination){
         console.log("Gano la posicion: ", combination);
-        combination.forEach(pos=>{ // resaltamos celdas ganadoras detenemos el programa
+        combination.forEach(pos=>{ 
             squares[pos].classList.add("winner")
         })
         showMessage(`FIN DE PARTIDA\n  ${shift} Wins!!`)
-        shift = "stop" // para que la ejecucion del programa pause
+        shift = "stop" 
     }
 
     function showMessage(text){
