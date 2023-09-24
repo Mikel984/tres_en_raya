@@ -1,0 +1,55 @@
+body{
+    background-color: rgb(219, 221, 210)
+}
+*{
+    margin: 0px;
+}
+#header{
+    text-align: center;
+    height: 8em;
+    background-color:rgb(224, 117, 40) ;
+    border-radius: 1em;
+}
+
+h1{
+    padding-top: 0.9em;
+}
+
+#board_container{
+    padding-top: 2em;
+    padding-bottom: 10em;
+    background-color: rgb(219, 221, 210);
+}
+
+#board_frame{
+    border: 4px solid brown;
+    background-color: burlywood;
+    width: 35em;
+    margin: auto;
+    margin-top: 3em;
+    padding-left: 1em;
+    border-radius: 1.5em;
+}
+#board{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 33em;
+    margin: auto;
+    padding-top: 1em;
+    padding-bottom: 2em;
+}
+.square{
+    width: 10em;
+    height: 10em;
+    border: 1px solid brown;
+    margin-top: 1em;
+    background-color: rgb(243, 240, 240);
+}
+.blueSquare{
+    background-color: blue;
+}
+.redSquare{
+    background-color: red;
+}
+
+  
